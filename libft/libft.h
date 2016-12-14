@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 01:54:19 by vbaron            #+#    #+#             */
-/*   Updated: 2016/11/22 21:15:56 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/14 18:21:58 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <mlx.h>
+
 # define BUFF_SIZE 8
 # define BUFF_MAX 64000
 # define MAXFILE 1000
@@ -29,6 +31,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void				ft_error(char *str);
 int					get_next_line(int const fd, char **line);
 void				ft_hello_world();
 void				ft_answer();

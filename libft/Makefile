@@ -6,7 +6,7 @@
 #    By: vbaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 01:11:08 by vbaron            #+#    #+#              #
-#    Updated: 2016/11/20 15:42:32 by vbaron           ###   ########.fr        #
+#    Updated: 2016/12/14 18:20:31 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRC_NAME = ft_bzero.c ft_isascii.c ft_memalloc.c ft_memcmp.c ft_memmove.c \
 		   ft_strsub.c ft_toupper.c ft_isprint.c ft_isnegative.c \
 		   ft_ispositive.c ft_isnull.c ft_answer.c ft_hello_world.c \
 		   ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c \
-		   ft_lstnew.c ft_atoi_16.c get_next_line.c ft_strsplit_mo.c
+		   ft_lstnew.c ft_atoi_16.c get_next_line.c ft_strsplit_mo.c \
+		   ft_error.c
 
 CFLAGS = -Werror -Wall -Wextra
 

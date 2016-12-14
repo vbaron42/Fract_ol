@@ -5,17 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vbaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/12/04 16:55:00 by vbaron            #+#    #+#              #
-#    Updated: 2016/11/23 05:28:55 by vbaron           ###   ########.fr        #
+#    Created: 2016/12/14 16:31:35 by vbaron            #+#    #+#              #
+#    Updated: 2016/12/14 19:39:17 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-##Recreer le header
 
 NAME	=	fractol
 FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 CC		=	gcc
-SRC		=	main.c
+SRC		=	main.c img.c event.c
 OBJ		=	$(SRC:.c=.o)
 
 all:		$(NAME)
