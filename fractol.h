@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/14 23:24:56 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/15 06:48:51 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ typedef struct		s_env
 	void			*win;
 	t_img			*img;
 	int				fractal;
+	int				c;
+	int				r;
+	int				v;
+	int				b;
+	int				v1;
+	int				b1;
 }					t_env;
 
 void				autre(t_env *env);//tmp
