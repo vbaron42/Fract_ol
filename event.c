@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/15 06:48:55 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/17 03:38:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int			mouse_move(int x, int y, t_env *env)
 	ft_putchar(' ');
 	ft_putnbr(y);
 	ft_putchar('\n');*/
-	ft_putnbr(env->fractal);
+	env->mx = x;
+	env->my = y;
 	print_img(env);
 	return (1);
 }

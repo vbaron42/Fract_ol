@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/15 06:48:51 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/17 09:44:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <mlx.h>
 
 # define TITLE "You can change this useless title in fractol.h"
-# define WIN_LENGHT 1200
-# define WIN_HEIGHT 900
+# define WIN_LENGHT 2000
+# define WIN_HEIGHT 1500
 
 typedef struct		s_img
 {
@@ -36,11 +36,16 @@ typedef struct		s_env
 	t_img			*img;
 	int				fractal;
 	int				c;
+	int				c1;
 	int				r;
 	int				v;
 	int				b;
+	int				r1;
 	int				v1;
 	int				b1;
+	int				slow;
+	int				mx;
+	int				my;
 }					t_env;
 
 void				autre(t_env *env);//tmp

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/15 06:38:13 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/17 05:48:20 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ int		main(int argc, char **argv)
 	env->img = new_img(env);
 	env->fractal = i;
 	env->c = 0;
-	env->r = 0;
-	env->v = 0;
-	env->b = 0;
+	env->c1 = 0;
+	env->r = 30;
+	env->v = 120;
+	env->b = 120;
+	env->slow = 1;
+	env->mx = (WIN_LENGHT / 2);
+	env->my = (WIN_HEIGHT / 2);
 	mlx_key_hook(env->win, event, env);
 	mlx_mouse_hook(env->win, mouse_clic, env);
 	mlx_hook(env->win, 6, 64, &mouse_move, env);
