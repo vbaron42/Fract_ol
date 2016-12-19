@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:22:41 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/17 09:44:50 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 04:10:04 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,25 @@ void		draw_circle(int cx, int cy, int r, int thick,t_env *env)
 	}
 }
 
+double		get_m2(double m, int r)
+{
+	double	m2;
+
+	m2 = m / r;
+	if (m2 > PI / 2.00000000)
+		m2 = PI / 2.00000000;
+	m2 = sin(m2) * (r / PI);
+	return (m2);
+}
+
 void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 {
 	int		comp;
+	double	mx2;
+	double	my2;
 
 	comp = 0;
-	if (r > 4)
+	if (r > 1)
 	{
 		if (thick < 1)
 			thick = 1;
@@ -113,7 +126,16 @@ void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 		env->c1 += 90;
 		if (env->c1 > 200)
 			env->c1 -= 200;
-		rec_circle((cx + env->mx), (cy + env->my) / 2, r / 2, thick / 2, env);
+//		mx2 = env->mx;//permet d'avoir un double au denominateur
+		mx2 = get_m2(env->mx, r);
+		my2 = get_m2(env->my, r);
+		env->mx -= (mx2 * VISION_FOCUS);// /2 ? (de base absent)
+		env->my -= (my2 * VISION_FOCUS);
+		if (env->mx_sign == -1)
+			mx2 = -mx2;
+		if (env->my_sign == -1)
+			my2 = -my2;
+		rec_circle((cx + mx2), (cy + my2), r / 2, thick / 2, env);
 	}
 }
 
@@ -129,6 +151,25 @@ void		white_screen(t_env *env)
 		while (l-- >= 0)
 			img_put_pixel(env, l, h, 0xFFFFFF);
 	}
+}
+void		get_m(int cx, int cy, t_env *env)
+{
+	env->mx = (env->mx - cx) / 2;
+	if (env->mx < 0)
+	{
+		env->mx_sign = -1;
+		env->mx = -env->mx;
+	}
+	else
+		env->mx_sign = 1;
+	env->my = (env->my - cy) / 2;
+	if (env->my < 0)
+	{
+		env->my_sign = -1;
+		env->my = -env->my;
+	}
+	else
+		env->my_sign = 1;
 }
 
 void		autre(t_env *env)
@@ -146,10 +187,7 @@ void		autre(t_env *env)
 	r = cy;
 	thick = 160;
 	env->slow++;
-	if (env->mx < (WIN_LENGHT / 2))
-		env->mx = (-1 * (WIN_LENGHT - env->mx));
-	else
-		env->mx = (-1 * (100 / env->mx));
+	get_m(cx, cy, env);
 	white_screen(env);
 	draw_circle(cx, cy, r, thick, env);
 	rec_circle(cx, cy, r, thick, env);

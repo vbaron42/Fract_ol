@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 01:54:19 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/14 18:21:58 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 01:25:08 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define BUFF_SIZE 8
 # define BUFF_MAX 64000
 # define MAXFILE 1000
+# define PI 3.14159265358979323846
 
 int				get_next_line(int const fd, char **line);
 
