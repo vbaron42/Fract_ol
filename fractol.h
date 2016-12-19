@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 04:10:12 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 07:02:34 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define WIN_LENGHT 1600
 # define WIN_HEIGHT 1000
 # define VISION_FOCUS 1.5
+# define VISION_SLOW 1.5
 
 typedef struct		s_img
 {
@@ -44,6 +45,8 @@ typedef struct		s_env
 	int				r1;
 	int				v1;
 	int				b1;
+	int				cx;
+	int				cy;
 	int				slow;
 	int				mx;
 	int				mx_sign;
@@ -51,7 +54,7 @@ typedef struct		s_env
 	int				my_sign;
 }					t_env;
 
-void				autre(t_env *env);//tmp
+void				vision(t_env *env);
 void				mandelbrot(t_env *env);
 void				julia(t_env *env);
 void				img_put_pixel(t_env *env, int x, int y, int c);

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/17 05:48:20 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 06:59:59 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		main(int argc, char **argv)
 	if (argc != 2 || ((!(ft_strstr(argv[1], "Mandelbrot")))
 						&& ((!(ft_strstr(argv[1], "Man"))) || (i < 0))
 						&& ((!(ft_strstr(argv[1], "Julia"))) || (i++ < 0))
-						&& (!(ft_strstr(argv[1], "Autre")) || ((i += 2) < 0))))
-		ft_error("Usage : ./fractol [Mandelbrot, Man, Julia]\n");
+						&& (!(ft_strstr(argv[1], "Vision")) || ((i += 2) < 0))))
+		ft_error("Usage : ./fractol [Mandelbrot, Man, Julia, Vision]\n");
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		ft_error("Malloc error\n");
 	if (!(env->mlx = mlx_init()))
@@ -41,9 +41,11 @@ int		main(int argc, char **argv)
 	env->r = 30;
 	env->v = 120;
 	env->b = 120;
-	env->slow = 1;
+	env->slow = 0;
 	env->mx = (WIN_LENGHT / 2);
 	env->my = (WIN_HEIGHT / 2);
+	env->cx = env->mx;
+	env->cy = env->my;
 	mlx_key_hook(env->win, event, env);
 	mlx_mouse_hook(env->win, mouse_clic, env);
 	mlx_hook(env->win, 6, 64, &mouse_move, env);

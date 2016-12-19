@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 19:01:53 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/14 23:39:28 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 07:06:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		draw_img(t_env *env)
 	else if (env->fractal == 1)
 		julia(env);
 	else
-		autre(env);
+		vision(env);
 }
 
 void		string_display(t_env *env)

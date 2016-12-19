@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:22:41 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 04:10:04 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 07:02:17 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 	if (r > 1)
 	{
 		if (thick < 1)
-			thick = 1;
+			thick = 2;
 		draw_circle(cx, cy, r, thick, env);
 		env->c1 += 90;
 		if (env->c1 > 200)
@@ -172,7 +172,7 @@ void		get_m(int cx, int cy, t_env *env)
 		env->my_sign = 1;
 }
 
-void		autre(t_env *env)
+void		vision(t_env *env)
 {
 	int		x;
 	int		y;
@@ -182,14 +182,14 @@ void		autre(t_env *env)
 	int		cy;
 	int		thick;
 
-	cx = (WIN_LENGHT / 2);
-	cy = (WIN_HEIGHT / 2);
-	r = cy;
-	thick = 160;
-	env->slow++;
-	get_m(cx, cy, env);
+	r = (WIN_HEIGHT / 2);//passer a 2 ou moins
+	if ((env->slow / VISION_SLOW) + r >= r * 2)
+		env->slow = 0;
+	thick = 20;
+	env->slow += 3;
+	get_m(env->cx, env->cy, env);
 	white_screen(env);
-	draw_circle(cx, cy, r, thick, env);
-	rec_circle(cx, cy, r, thick, env);
+//	get_c(cx, cy, r, thick, env);
+	rec_circle(env->cx, env->cy, r + (env->slow / VISION_SLOW), thick + (env->slow / (10 * VISION_SLOW)), env);
 }
 
