@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:22:41 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 07:02:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/19 07:32:07 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,4 +192,3 @@ void		vision(t_env *env)
 //	get_c(cx, cy, r, thick, env);
 	rec_circle(env->cx, env->cy, r + (env->slow / VISION_SLOW), thick + (env->slow / (10 * VISION_SLOW)), env);
 }
-

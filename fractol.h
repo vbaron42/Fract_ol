@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 07:02:34 by vbaron           ###   ########.fr       */
+/*   Updated: 2016/12/30 19:44:51 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 # define WIN_HEIGHT 1000
 # define VISION_FOCUS 1.5
 # define VISION_SLOW 1.5
+
+typedef struct		s_man
+{
+	double			x1;
+	double			x2;
+	double			y1;
+	double			y2;
+	int				scale;
+	int				imax;
+}					t_man;
 
 typedef struct		s_img
 {
