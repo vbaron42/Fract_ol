@@ -6,14 +6,14 @@
 #    By: vbaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 16:31:35 by vbaron            #+#    #+#              #
-#    Updated: 2016/12/19 07:05:38 by vbaron           ###   ########.fr        #
+#    Updated: 2017/01/07 01:46:28 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	fractol
 FLAGS	=	-lmlx -framework OpenGL -framework AppKit
 CC		=	gcc
-SRC		=	main.c img.c event.c mandelbrot.c julia.c vision.c
+SRC		=	main.c img.c event.c color.c mandelbrot.c julia.c vision.c
 OBJ		=	$(SRC:.c=.o)
 
 all:		$(NAME)

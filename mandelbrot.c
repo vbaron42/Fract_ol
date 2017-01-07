@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/30 21:46:36 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 02:44:28 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			get_man_color(double div)
 {
-	return (0xFFFFFF - (div * 2000));
+	return (color_scale((div * 15) + 100));
 }
 
 void		is_in_fractal(double x, double y, t_man man, t_env *env)
@@ -40,9 +40,9 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 		z_i = (2 * z_i * tmp) + c_i;
 	}
 	if (i == man.imax + 1)
-		img_put_pixel(env, x, y, 0x903020);
+		img_put_pixel(env, x, y, color_scale(env->man_c));
 	else
-		img_put_pixel(env, x, y, get_man_color((z_r * z_r) + (z_i * z_i)));
+		img_put_pixel(env, x, y, get_man_color(i + (env->man_c / 10)/*(z_r * z_r) + (z_i * z_i)*/));
 }
 
 void		mandelbrot(t_env *env)
@@ -58,7 +58,7 @@ void		mandelbrot(t_env *env)
 	man.y1 = -1.2;
 	man.y2 = 1.2;
 	man.scale = 300;
-	man.imax = 1000;
+	man.imax = 42;
 	img_x = (man.x2 - man.x1) * man.scale;
 	img_y = (man.y2 - man.y1) * man.scale;
 	y = -1;

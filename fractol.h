@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/30 19:44:51 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 03:06:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef struct		s_env
 	int				mx_sign;
 	int				my;
 	int				my_sign;
+	int				man_c;
+	int				man_zoom;
+	int				man_x;
+	int				man_y;
 }					t_env;
 
 void				vision(t_env *env);
@@ -71,6 +75,7 @@ void				img_put_pixel(t_env *env, int x, int y, int c);
 int					mouse_move(int x, int y, t_env *env);
 int					mouse_clic(int button, int x, int y, t_env *env);
 int					event(int code, t_env *env);
+int					color_scale(int i);
 t_img				*new_img(t_env *env);
 int					print_img(t_env *env);
 #endif
