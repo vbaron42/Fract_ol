@@ -6,16 +6,11 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 02:44:28 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 05:49:43 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int			get_man_color(double div)
-{
-	return (color_scale((div * 15) + 100));
-}
 
 void		is_in_fractal(double x, double y, t_man man, t_env *env)
 {
@@ -42,22 +37,24 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 	if (i == man.imax + 1)
 		img_put_pixel(env, x, y, color_scale(env->man_c));
 	else
-		img_put_pixel(env, x, y, get_man_color(i + (env->man_c / 10)/*(z_r * z_r) + (z_i * z_i)*/));
+		img_put_pixel(env, x, y,
+				color_scale(((i + (env->man_c / 10)) * 15) + 100));
 }
 
 void		mandelbrot(t_env *env)
 {
 	t_man	man;
-	double	img_x;//int ? double ?
+	double	img_x;
 	double	img_y;
 	double	x;
 	double	y;
 
+	man.scale = (WIN_LENGHT / 2.7) + env->man_zoom;
 	man.x1 = -2.1;
 	man.x2 = 0.6;
 	man.y1 = -1.2;
+	//plus man.scale/zoom > moins les changements ont d'effet
 	man.y2 = 1.2;
-	man.scale = 300;
 	man.imax = 42;
 	img_x = (man.x2 - man.x1) * man.scale;
 	img_y = (man.y2 - man.y1) * man.scale;

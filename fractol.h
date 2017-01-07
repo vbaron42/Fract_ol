@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 03:06:16 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 03:55:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <mlx.h>
 
 # define TITLE "You can change this useless title in fractol.h"
-# define WIN_LENGHT 1600
-# define WIN_HEIGHT 1000
+# define WIN_LENGHT 900
+# define WIN_HEIGHT 800
 # define VISION_FOCUS 1.5
 # define VISION_SLOW 1.5
 

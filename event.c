@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 03:11:49 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 05:12:10 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int			mouse_move(int x, int y, t_env *env)
 
 int			mouse_clic(int button, int x, int y, t_env *env)
 {
-/*	ft_putstr("Clic : ");
+	ft_putstr("Clic : ");
 	ft_putnbr(button);
-	ft_putchar(' ');
+/*	ft_putchar(' ');
 	ft_putnbr(y);
 	ft_putchar('\n');*/
 	if (env->fractal == 0)
 	{
 		if (button == 5)
-			env->man_zoom++;
+			env->man_zoom += 10;
 		else if (button == 4 && env->man_zoom != 0)
-			env->man_zoom--;
+			env->man_zoom -= 10;
 		env->man_x = x;
 		env->man_y = y;
 	}
