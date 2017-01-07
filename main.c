@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 08:23:11 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 11:08:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int		main(int argc, char **argv)
 	env->v = 120;
 	env->b = 120;
 	env->slow = 0;
-	env->man_c = 0;
+	env->man->c = 0;
+	env->man->pattern = 0;
 	env->man->zoom = 0;
 	env->man->scale = (WIN_LENGHT / 2.7);
 	env->man->x1 = -2.1;

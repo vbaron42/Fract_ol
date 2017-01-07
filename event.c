@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 09:04:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 11:40:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int			mouse_move(int x, int y, t_env *env)
 
 int			mouse_clic(int button, int x, int y, t_env *env)
 {
-	ft_putstr("Clic : ");
+/*	ft_putstr("Clic : ");
 	ft_putnbr(button);
-/*	ft_putchar(' ');
+	ft_putchar(' ');
 	ft_putnbr(y);
 	ft_putchar('\n');*/
 	if (env->fractal == 0)
@@ -38,12 +38,12 @@ int			mouse_clic(int button, int x, int y, t_env *env)
 		if (button == 5)
 		{
 			env->man->zoom = 1;
-			env->man_c += 8;// deplacer ? modifier valeur ? par un multiple ?
+			env->man->c += 8;// deplacer ? modifier valeur ? par un multiple ?
 		}
 		else if (button == 4)
 		{
 			env->man->zoom = -1;
-			env->man_c -= 8;// deplacer ? modifier valeur ? par un multiple ?
+			env->man->c -= 8;// deplacer ? modifier valeur ? par un multiple ?
 		}
 		env->man->mouse_x = x;
 		env->man->mouse_y = y;
@@ -61,7 +61,10 @@ int			event(int code, t_env *env)
 		exit(0);
 	}
 	env->man->zoom = 0;
-	env->man_c += 16;// deplacer ? modifier valeur ? par un multiple ?
+	if (code == 8 && env->fractal == 0)
+		env->man->pattern++;
+	if (env->fractal == 0)
+		env->man->c += 16;// deplacer ? modifier valeur ? par un multiple ?
 	if (code == 49)
 		env->fractal++;
 	if (env->fractal == 3)

@@ -6,15 +6,15 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 19:01:53 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 07:06:16 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 11:05:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void				img_put_pixel(t_env *env, int x, int y, int c)
+void		img_put_pixel(t_env *env, int x, int y, int c)
 {
-	int				pxl;
+	int		pxl;
 
 	if (y < WIN_HEIGHT && x < WIN_LENGHT && y > 0 && x > 0)
 	{
@@ -37,13 +37,13 @@ void		draw_img(t_env *env)
 
 void		string_display(t_env *env)
 {
-	mlx_string_put(env->mlx,env->win, 50, 20, 0xFF6FFF, "Fractal :");
+	mlx_string_put(env->mlx, env->win, 50, 20, 0xFF6FFF, "Fractal :");
 	if (env->fractal == 0)
-		mlx_string_put(env->mlx,env->win, 150, 20, 0xFF6FFF, "Mandelbrot");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Mandelbrot");
 	else if (env->fractal == 1)
-		mlx_string_put(env->mlx,env->win, 150, 20, 0xFF6FFF, "Julia");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Julia");
 	else
-		mlx_string_put(env->mlx,env->win, 150, 20, 0xFF6FFF, "Autre");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Autre");
 }
 
 t_img		*new_img(t_env *env)

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 09:08:23 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 11:37:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 		z_i = (2 * z_i * tmp) + c_i;
 	}
 	if (i == man.imax + 1)
-		img_put_pixel(env, x, y, color_scale(env->man_c));
+		img_put_pixel(env, x, y, color_scale(env->man->c, env->man->pattern));
 	else
-		img_put_pixel(env, x, y,
-				color_scale(((i + (env->man_c / 10)) * 15) + 100));
+		img_put_pixel(env, x, y, color_scale(((i + (env->man->c / 10))
+						* 15) + 100, env->man->pattern));
 }
 
 void		mandelbrot(t_env *env)
@@ -73,12 +73,6 @@ void		mandelbrot(t_env *env)
 		env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
 		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
 	}
-	ft_putstr("\nhx : ");//
-	ft_putnbr(hx);//
-	ft_putstr("\nx1 : ");//
-	ft_putnbr(env->man->x1);//
-	ft_putstr("\nimg_x : ");//
-	ft_putnbr(env->man->img_x);//
 	y = -1;
 	while (y++ < env->man->img_y)
 	{

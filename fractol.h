@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 09:06:15 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 11:07:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct		s_man
 	double			scale;
 	int				imax;
 	char			zoom;
+	int				c;
+	int				pattern;
 }					t_man;
 
 typedef struct		s_img
@@ -68,7 +70,6 @@ typedef struct		s_env
 	int				mx_sign;
 	int				my;
 	int				my_sign;
-	int				man_c;
 }					t_env;
 
 void				vision(t_env *env);
@@ -78,7 +79,7 @@ void				img_put_pixel(t_env *env, int x, int y, int c);
 int					mouse_move(int x, int y, t_env *env);
 int					mouse_clic(int button, int x, int y, t_env *env);
 int					event(int code, t_env *env);
-int					color_scale(int i);
+int					color_scale(int i, int pattern);
 t_img				*new_img(t_env *env);
 int					print_img(t_env *env);
 #endif
