@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 03:09:42 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 08:23:11 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int		main(int argc, char **argv)
 		ft_error("mlx_init() error\n");
 	if (!(env->win = mlx_new_window(env->mlx, WIN_LENGHT, WIN_HEIGHT, TITLE)))
 		ft_error("mlx_new_window() error\n");
+	if (!(env->man = (t_man*)malloc(sizeof(t_man))))
+		ft_error("Malloc error\n");
 	env->img = new_img(env);
 	env->fractal = i;
 	env->c = 0;
@@ -43,7 +45,15 @@ int		main(int argc, char **argv)
 	env->b = 120;
 	env->slow = 0;
 	env->man_c = 0;
-	env->man_zoom = 0;
+	env->man->zoom = 0;
+	env->man->scale = (WIN_LENGHT / 2.7);
+	env->man->x1 = -2.1;
+	env->man->x2 = 0.6;
+	env->man->y1 = -1.2;
+	env->man->y2 = 1.2;
+	env->man->imax = 42;
+	env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
+	env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
 	env->mx = (WIN_LENGHT / 2);
 	env->my = (WIN_HEIGHT / 2);
 	env->cx = env->mx;

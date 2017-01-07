@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 05:49:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 09:08:23 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,50 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 
 void		mandelbrot(t_env *env)
 {
-	t_man	man;
-	double	img_x;
-	double	img_y;
+	double	hx;
+	double	hy;
 	double	x;
 	double	y;
 
-	man.scale = (WIN_LENGHT / 2.7) + env->man_zoom;
-	man.x1 = -2.1;
-	man.x2 = 0.6;
-	man.y1 = -1.2;
-	//plus man.scale/zoom > moins les changements ont d'effet
-	man.y2 = 1.2;
-	man.imax = 42;
-	img_x = (man.x2 - man.x1) * man.scale;
-	img_y = (man.y2 - man.y1) * man.scale;
+	if (env->man->zoom != 0)
+	{
+		env->man->img_x /= env->man->scale;
+		env->man->img_y /= env->man->scale;
+		if (env->man->zoom == 1)
+		{
+			hx = env->man->img_x / 4;
+			hy = env->man->img_y / 4;
+			env->man->scale *= 2;
+			env->man->imax += 3;
+		}
+		else
+		{
+			hx = env->man->img_x;
+			hy = env->man->img_y;
+			env->man->scale /= 2;
+			env->man->imax -= 3;
+		}
+		env->man->x1 += ((env->man->mouse_x / WIN_LENGHT) * env->man->img_x) - hx;
+		env->man->x2 = env->man->x1 + (hx * 2);
+		env->man->y1 += ((env->man->mouse_y / WIN_HEIGHT) * env->man->img_y) - hy;
+		env->man->y2 = env->man->y1 + (hy * 2);
+		env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
+		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
+	}
+	ft_putstr("\nhx : ");//
+	ft_putnbr(hx);//
+	ft_putstr("\nx1 : ");//
+	ft_putnbr(env->man->x1);//
+	ft_putstr("\nimg_x : ");//
+	ft_putnbr(env->man->img_x);//
 	y = -1;
-	while (y++ < img_y)
+	while (y++ < env->man->img_y)
 	{
 		x = -1;
-		while (x++ < img_x)
-			is_in_fractal(x, y, man, env);
+		while (x++ < env->man->img_x)
+		{
+			is_in_fractal(x, y, *env->man, env);
+//			ft_putstr("pix_ok ");
+		}
 	}
 }

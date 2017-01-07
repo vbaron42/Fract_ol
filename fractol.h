@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 03:55:44 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/07 09:06:15 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@
 
 typedef struct		s_man
 {
+	double			mouse_x;
+	double			mouse_y;
 	double			x1;
 	double			x2;
 	double			y1;
 	double			y2;
-	int				scale;
+	double			img_x;
+	double			img_y;
+	double			scale;
 	int				imax;
+	char			zoom;
 }					t_man;
 
 typedef struct		s_img
@@ -47,6 +52,7 @@ typedef struct		s_env
 	void			*win;
 	t_img			*img;
 	int				fractal;
+	t_man			*man;
 	int				c;
 	int				c1;
 	int				r;
@@ -63,9 +69,6 @@ typedef struct		s_env
 	int				my;
 	int				my_sign;
 	int				man_c;
-	int				man_zoom;
-	int				man_x;
-	int				man_y;
 }					t_env;
 
 void				vision(t_env *env);
