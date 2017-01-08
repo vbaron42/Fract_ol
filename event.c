@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 11:40:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 09:54:07 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int			mouse_clic(int button, int x, int y, t_env *env)
 			env->man->zoom = -1;
 			env->man->c -= 8;// deplacer ? modifier valeur ? par un multiple ?
 		}
-		env->man->mouse_x = x;
-		env->man->mouse_y = y;
+		env->man->m_x = x;
+		env->man->m_y = y;
 	}
 	print_img(env);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 11:37:16 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 09:57:39 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,8 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 						* 15) + 100, env->man->pattern));
 }
 
-void		mandelbrot(t_env *env)
+void		zoom_in_out(t_env *env, double hx, double hy)
 {
-	double	hx;
-	double	hy;
-	double	x;
-	double	y;
-
 	if (env->man->zoom != 0)
 	{
 		env->man->img_x /= env->man->scale;
@@ -57,30 +52,37 @@ void		mandelbrot(t_env *env)
 			hx = env->man->img_x / 4;
 			hy = env->man->img_y / 4;
 			env->man->scale *= 2;
-			env->man->imax += 3;
+			env->man->imax += 4;
 		}
 		else
 		{
 			hx = env->man->img_x;
 			hy = env->man->img_y;
 			env->man->scale /= 2;
-			env->man->imax -= 3;
+			env->man->imax -= 4;
 		}
-		env->man->x1 += ((env->man->mouse_x / WIN_LENGHT) * env->man->img_x) - hx;
+		env->man->x1 += ((env->man->m_x / WIN_LENGHT) * env->man->img_x) - hx;
 		env->man->x2 = env->man->x1 + (hx * 2);
-		env->man->y1 += ((env->man->mouse_y / WIN_HEIGHT) * env->man->img_y) - hy;
+		env->man->y1 += ((env->man->m_y / WIN_HEIGHT) * env->man->img_y) - hy;
 		env->man->y2 = env->man->y1 + (hy * 2);
 		env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
 		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
 	}
+}
+
+void		mandelbrot(t_env *env)
+{
+	double	hx;
+	double	hy;
+	double	x;
+	double	y;
+
+	zoom_in_out(env, hx, hy);
 	y = -1;
 	while (y++ < env->man->img_y)
 	{
 		x = -1;
 		while (x++ < env->man->img_x)
-		{
 			is_in_fractal(x, y, *env->man, env);
-//			ft_putstr("pix_ok ");
-		}
 	}
 }

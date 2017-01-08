@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/07 11:07:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 09:57:44 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 typedef struct		s_man
 {
-	double			mouse_x;
-	double			mouse_y;
+	double			m_x;
+	double			m_y;
 	double			x1;
 	double			x2;
 	double			y1;
