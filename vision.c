@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:22:41 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 07:32:07 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 19:55:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ void		get_m(int cx, int cy, t_env *env)
 	else
 		env->my_sign = 1;
 }
+
+//Avoir Julia en fond c = -1.417022285618
 
 void		vision(t_env *env)
 {
