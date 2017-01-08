@@ -6,33 +6,29 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 09:57:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 10:31:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		is_in_fractal(double x, double y, t_man man, t_env *env)
+void			is_in_fractal(double x, double y, t_man man, t_env *env)
 {
-	int		i;
-	double	c_r;
-	double	c_i;
-	double	z_r;
-	double	tmp;
-	double	z_i;
+	int			i;
+	t_cplx_nb	c;
+	t_cplx_nb	z;
+	double		tmp;
 
 	i = 0;
-	c_r = x / man.scale + man.x1;
-	c_i = y / man.scale + man.y1;
-	z_r = 0;
-	z_i = 0;
-//	z_r = c_r;
-//	z_i = c_i;
-	while ((z_r * z_r) + (z_i * z_i) < 4 && i++ < man.imax)
+	c.r = x / man.scale + man.x1;
+	c.i = y / man.scale + man.y1;
+	z.r = 0;
+	z.i = 0;
+	while ((z.r * z.r) + (z.i * z.i) < 4 && i++ < man.imax)
 	{
-		tmp = z_r;
-		z_r = (z_r * z_r) - (z_i * z_i) + c_r;
-		z_i = (2 * z_i * tmp) + c_i;
+		tmp = z.r;
+		z.r = (z.r * z.r) - (z.i * z.i) + c.r;
+		z.i = (2 * z.i * tmp) + c.i;
 	}
 	if (i == man.imax + 1)
 		img_put_pixel(env, x, y, color_scale(env->man->c, env->man->pattern));
@@ -41,7 +37,7 @@ void		is_in_fractal(double x, double y, t_man man, t_env *env)
 						* 15) + 100, env->man->pattern));
 }
 
-void		zoom_in_out(t_env *env, double hx, double hy)
+void			zoom_in_out(t_env *env, double hx, double hy)
 {
 	if (env->man->zoom != 0)
 	{
@@ -70,12 +66,12 @@ void		zoom_in_out(t_env *env, double hx, double hy)
 	}
 }
 
-void		mandelbrot(t_env *env)
+void			mandelbrot(t_env *env)
 {
-	double	hx;
-	double	hy;
-	double	x;
-	double	y;
+	double		hx;
+	double		hy;
+	double		x;
+	double		y;
 
 	zoom_in_out(env, hx, hy);
 	y = -1;

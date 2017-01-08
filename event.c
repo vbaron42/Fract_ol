@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 09:54:07 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 10:33:43 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int			mouse_move(int x, int y, t_env *env)
 {
-/*	ft_putstr("Move : ");
-	ft_putnbr(x);
-	ft_putchar(' ');
-	ft_putnbr(y);
-	ft_putchar('\n');*/
 	env->mx = x;
 	env->my = y;
 	print_img(env);
@@ -27,24 +22,13 @@ int			mouse_move(int x, int y, t_env *env)
 
 int			mouse_clic(int button, int x, int y, t_env *env)
 {
-/*	ft_putstr("Clic : ");
-	ft_putnbr(button);
-	ft_putchar(' ');
-	ft_putnbr(y);
-	ft_putchar('\n');*/
 	if (env->fractal == 0)
 	{
 		env->man->zoom = 0;
 		if (button == 5)
-		{
 			env->man->zoom = 1;
-			env->man->c += 8;// deplacer ? modifier valeur ? par un multiple ?
-		}
 		else if (button == 4)
-		{
 			env->man->zoom = -1;
-			env->man->c -= 8;// deplacer ? modifier valeur ? par un multiple ?
-		}
 		env->man->m_x = x;
 		env->man->m_y = y;
 	}
@@ -54,7 +38,6 @@ int			mouse_clic(int button, int x, int y, t_env *env)
 
 int			event(int code, t_env *env)
 {
-//	ft_putnbr(code);//tmp
 	if (code == 53)
 	{
 		mlx_destroy_window(env->mlx, env->win);
@@ -64,7 +47,7 @@ int			event(int code, t_env *env)
 	if (code == 8 && env->fractal == 0)
 		env->man->pattern++;
 	if (env->fractal == 0)
-		env->man->c += 16;// deplacer ? modifier valeur ? par un multiple ?
+		env->man->c += 12;
 	if (code == 49)
 		env->fractal++;
 	if (env->fractal == 3)
