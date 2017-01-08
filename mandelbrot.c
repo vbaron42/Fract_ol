@@ -6,13 +6,13 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 11:38:06 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 12:43:40 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			is_in_fractal(double x, double y, t_man man, t_env *env)
+void			is_in_fractal(double x, double y, t_fractal man, t_env *env)
 {
 	int			i;
 	t_cplx_nb	c;

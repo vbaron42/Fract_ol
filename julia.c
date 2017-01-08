@@ -6,13 +6,13 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:18:17 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 11:38:02 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 17:43:34 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			is_in_fractal2(double x, double y, t_man man, t_env *env)
+void			is_in_fractal2(double x, double y, t_fractal jul, t_env *env)
 {
 	int			i;
 	t_cplx_nb	c;
@@ -20,65 +20,68 @@ void			is_in_fractal2(double x, double y, t_man man, t_env *env)
 	double		tmp;
 
 	i = 0;
-	c.r = 0.285;
-	c.i = 0.01;
-	z.r = x / man.scale + man.x1;
-	z.i = y / man.scale + man.y1;
-	while ((z.r * z.r) + (z.i * z.i) < 4 && i++ < man.imax)
+	c.r = env->jul->c_r;
+	c.i = env->jul->c_i;
+	z.r = x / jul.scale + jul.x1;
+	z.i = y / jul.scale + jul.y1;
+	while ((z.r * z.r) + (z.i * z.i) < 4 && i++ < jul.imax)
 	{
 		tmp = z.r;
 		z.r = (z.r * z.r) - (z.i * z.i) + c.r;
 		z.i = (2 * z.i * tmp) + c.i;
 	}
-	if (i == man.imax + 1)
-		img_put_pixel(env, x, y, color_scale(env->man->c, env->man->pattern));
+	if (i == jul.imax + 1)
+		img_put_pixel(env, x, y, color_scale(env->jul->c, env->jul->pattern));
 	else
-		img_put_pixel(env, x, y, color_scale(((i + (env->man->c / 10))
-						* 15) + 100, env->man->pattern));
+		img_put_pixel(env, x, y, color_scale(((i + (env->jul->c / 10))
+						* 15) + 100, env->jul->pattern));
 }
 
 void			zoom_in_out2(t_env *env, double hx, double hy)
 {
-	if (env->man->zoom != 0)
+	env->jul->img_x /= env->jul->scale;
+	env->jul->img_y /= env->jul->scale;
+	if (env->jul->zoom == 1)
 	{
-		env->man->img_x /= env->man->scale;
-		env->man->img_y /= env->man->scale;
-		if (env->man->zoom == 1)
-		{
-			hx = env->man->img_x / 4;
-			hy = env->man->img_y / 4;
-			env->man->scale *= 2;
-			env->man->imax += 4;
-		}
-		else
-		{
-			hx = env->man->img_x;
-			hy = env->man->img_y;
-			env->man->scale /= 2;
-			env->man->imax -= 4;
-		}
-		env->man->x1 += ((env->man->m_x / WIN_LENGHT) * env->man->img_x) - hx;
-		env->man->x2 = env->man->x1 + (hx * 2);
-		env->man->y1 += ((env->man->m_y / WIN_HEIGHT) * env->man->img_y) - hy;
-		env->man->y2 = env->man->y1 + (hy * 2);
-		env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
-		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
+		hx = env->jul->img_x / 4;
+		hy = env->jul->img_y / 4;
+		env->jul->scale *= 2;
+		env->jul->imax += 4;
 	}
+	else
+	{
+		hx = env->jul->img_x;
+		hy = env->jul->img_y;
+		env->jul->scale /= 2;
+		env->jul->imax -= 4;
+	}
+	env->jul->x1 += ((env->jul->m_x / WIN_LENGHT) * env->jul->img_x) - hx;
+	env->jul->x2 = env->jul->x1 + (hx * 2);
+	env->jul->y1 += ((env->jul->m_y / WIN_HEIGHT) * env->jul->img_y) - hy;
+	env->jul->y2 = env->jul->y1 + (hy * 2);
+	env->jul->img_x = (env->jul->x2 - env->jul->x1) * env->jul->scale;
+	env->jul->img_y = (env->jul->y2 - env->jul->y1) * env->jul->scale;
 }
 
-void		julia(t_env *env)
+void			julia(t_env *env)
 {
 	double		hx;
 	double		hy;
 	double		x;
 	double		y;
 
-	zoom_in_out2(env, hx, hy);
+	if (env->jul->zoom == 0 && env->jul->freeze == 0)
+	{
+		env->jul->c_r = env->jul->move_x / env->jul->scale + env->jul->x1;
+		env->jul->c_i = env->jul->move_y / env->jul->scale + env->jul->y1;
+	}
+	else if (env->jul->zoom != 0)
+		zoom_in_out2(env, hx, hy);
 	y = -1;
-	while (y++ < env->man->img_y)
+	while (y++ < env->jul->img_y)
 	{
 		x = -1;
-		while (x++ < env->man->img_x)
-			is_in_fractal2(x, y, *env->man, env);
+		while (x++ < env->jul->img_x)
+			is_in_fractal2(x, y, *env->jul, env);
 	}
 }

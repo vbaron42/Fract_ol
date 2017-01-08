@@ -6,7 +6,7 @@
 #    By: vbaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 16:31:35 by vbaron            #+#    #+#              #
-#    Updated: 2017/01/07 01:46:28 by vbaron           ###   ########.fr        #
+#    Updated: 2017/01/08 19:30:26 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,21 +19,21 @@ OBJ		=	$(SRC:.c=.o)
 all:		$(NAME)
 
 $(NAME):
-	cd libft/ && $(MAKE)
-	$(CC) $(FLAGS) $(SRC) -L ./libft -lft -o $(NAME)
-	cd libft/ && $(MAKE) fclean
-
+	@cd libft/ && $(MAKE)
+	@$(CC) $(FLAGS) $(SRC) -L ./libft -lft -o $(NAME)
+	@cd libft/ && $(MAKE) fclean
+	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Create Fractol"
 %.o: %.c
-	$(cc) $(FLAGS) -c $^ -o $@
+	@$(cc) $(FLAGS) -c $^ -o $@
 
 norminette:
-	norminette $(SRC)
-	norminette fractol.h
+	@norminette $(SRC)
+	@norminette fractol.h
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

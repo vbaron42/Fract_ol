@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 10:30:57 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 16:58:13 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_cplx_nb
 	double			i;
 }					t_cplx_nb;
 
-typedef struct		s_man
+typedef struct		s_fractal
 {
 	double			m_x;
 	double			m_y;
@@ -43,7 +43,12 @@ typedef struct		s_man
 	char			zoom;
 	int				c;
 	int				pattern;
-}					t_man;
+	char			freeze;
+	int				move_x;
+	int				move_y;
+	double			c_r;
+	double			c_i;
+}					t_fractal;
 
 typedef struct		s_img
 {
@@ -60,7 +65,8 @@ typedef struct		s_env
 	void			*win;
 	t_img			*img;
 	int				fractal;
-	t_man			*man;
+	t_fractal		*jul;
+	t_fractal		*man;
 	int				c;
 	int				c1;
 	int				r;
