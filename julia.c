@@ -6,13 +6,13 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:18:17 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 10:12:05 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 11:38:02 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-void			is_in_fractal(double x, double y, t_man man, t_env *env)
+
+void			is_in_fractal2(double x, double y, t_man man, t_env *env)
 {
 	int			i;
 	t_cplx_nb	c;
@@ -20,12 +20,10 @@ void			is_in_fractal(double x, double y, t_man man, t_env *env)
 	double		tmp;
 
 	i = 0;
-	c.r = x / man.scale + man.x1;
-	c.i = y / man.scale + man.y1;
-	z.r = 0;
-	z.i = 0;
-//	z.r = c.r;
-//	z.i = c.i;
+	c.r = 0.285;
+	c.i = 0.01;
+	z.r = x / man.scale + man.x1;
+	z.i = y / man.scale + man.y1;
 	while ((z.r * z.r) + (z.i * z.i) < 4 && i++ < man.imax)
 	{
 		tmp = z.r;
@@ -39,7 +37,7 @@ void			is_in_fractal(double x, double y, t_man man, t_env *env)
 						* 15) + 100, env->man->pattern));
 }
 
-void			zoom_in_out(t_env *env, double hx, double hy)
+void			zoom_in_out2(t_env *env, double hx, double hy)
 {
 	if (env->man->zoom != 0)
 	{
@@ -67,20 +65,20 @@ void			zoom_in_out(t_env *env, double hx, double hy)
 		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
 	}
 }
-*/
+
 void		julia(t_env *env)
-{/*
+{
 	double		hx;
 	double		hy;
 	double		x;
 	double		y;
 
-	zoom_in_out(env, hx, hy);
+	zoom_in_out2(env, hx, hy);
 	y = -1;
 	while (y++ < env->man->img_y)
 	{
 		x = -1;
 		while (x++ < env->man->img_x)
-			is_in_fractal(x, y, *env->man, env);
-	}*/
+			is_in_fractal2(x, y, *env->man, env);
+	}
 }

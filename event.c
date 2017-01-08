@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 10:33:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 11:15:32 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			mouse_move(int x, int y, t_env *env)
 
 int			mouse_clic(int button, int x, int y, t_env *env)
 {
-	if (env->fractal == 0)
+	if (env->fractal == 1) // rmplacer 1 par 0
 	{
 		env->man->zoom = 0;
 		if (button == 5)
@@ -44,9 +44,9 @@ int			event(int code, t_env *env)
 		exit(0);
 	}
 	env->man->zoom = 0;
-	if (code == 8 && env->fractal == 0)
+	if (code == 8 && env->fractal == 1)//lameme
 		env->man->pattern++;
-	if (env->fractal == 0)
+	if (env->fractal == 1)//
 		env->man->c += 12;
 	if (code == 49)
 		env->fractal++;

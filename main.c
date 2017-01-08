@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 10:30:54 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/08 11:25:12 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	init_man(t_env *env)
 	env->man->c = 0;
 	env->man->pattern = 0;
 	env->man->zoom = 0;
-	env->man->scale = (WIN_LENGHT / 2.7);
-	env->man->x1 = -2.1;
-	env->man->x2 = 0.6;
-	env->man->y1 = -1.2;
-	env->man->y2 = 1.2;
-	env->man->imax = 42;
+	env->man->scale = 120;//garder -> (WIN_LENGHT / 2.7);
+	env->man->x1 = -1.5;//-2.1;
+	env->man->x2 = 1.5;//0.6;
+	env->man->y1 = -1.5;//-1.2;
+	env->man->y2 = 1.5;//1.2;
+	env->man->imax = 150;//42;
 	env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
 	env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
 }
