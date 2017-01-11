@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:22:41 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 19:55:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 07:21:37 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,20 @@
 
 void		octant_put_pixel(int cx, int cy, int x, int y, t_env *env)
 {
+	int		c;
+
+	c = color_scale(env->c, env->pattern);
 	if (env->c != 0)
 	{
-		img_put_pixel(env, cx + x, cy + y, env->c);
-		img_put_pixel(env, cx - x, cy + y, env->c);
-		img_put_pixel(env, cx + x, cy - y, env->c);
-		img_put_pixel(env, cx - x, cy - y, env->c);
-		img_put_pixel(env, cx + y, cy + x, env->c);
-		img_put_pixel(env, cx - y, cy + x, env->c);
-		img_put_pixel(env, cx + y, cy - x, env->c);
-		img_put_pixel(env, cx - y, cy - x, env->c);
+		img_put_pixel(env, cx + x, cy + y, c);
+		img_put_pixel(env, cx - x, cy + y, c);
+		img_put_pixel(env, cx + x, cy - y, c);
+		img_put_pixel(env, cx - x, cy - y, c);
+		img_put_pixel(env, cx + y, cy + x, c);
+		img_put_pixel(env, cx - y, cy + x, c);
+		img_put_pixel(env, cx + y, cy - x, c);
+		img_put_pixel(env, cx - y, cy - x, c);
 	}
-	if (env->r >= 50)
-		env->r1 = 1;
-	if (env->r <= 10)
-		env->r1 = 0;
-	if (env->r1 == 0)
-		env->r++;
-	else
-		env->r--;
-//	if (env->c1 > 90)
-//		env->c = 0;
-//	else)
-	env->c = env->b + (env->v * 256) + ((env->r + env->c1) * 65536);
-/*	ft_putnbr(env->b);
-	ft_putchar(' ');
-	ft_putnbr(env->v);
-	ft_putchar('\n');*/
 }
 
 void		draw_circle(int cx, int cy, int r, int thick,t_env *env)
@@ -53,27 +40,7 @@ void		draw_circle(int cx, int cy, int r, int thick,t_env *env)
 	rt = r - thick;
 	while (rt++ != r + thick - 1)
 	{
-//		env->c = 0;
-//		env->r = 20;
-//		env->v++;
-//		env->b = 0;
-//		env->c *= 0.998;
-	if (env->b >= 190)
-		env->b1 = 1;
-	if (env->b <= 140)
-		env->b1 = 0;
-	if (env->b1 == 0)
-		env->b++;
-	else
-		env->b--;
-	if (env->v >= 200)
-		env->v1 = 1;
-	if (env->v <= 100)
-		env->v1 = 0;
-	if (env->v1 == 0)
-		env->v += 2;
-	else
-		env->v--;
+		env->c += 4;
 		x = 0;
 		y = rt;
 		d = rt - 1;
@@ -87,8 +54,8 @@ void		draw_circle(int cx, int cy, int r, int thick,t_env *env)
 			}
 			else if (d < (2 * (rt - y)))
 			{
-					d = (d + (2 * y) -1);
-					y--;
+				d = (d + (2 * y) -1);
+				y--;
 			}
 			else
 			{
@@ -98,6 +65,7 @@ void		draw_circle(int cx, int cy, int r, int thick,t_env *env)
 			}
 		}
 	}
+	env->c -= (8 * thick) - 4;
 }
 
 double		get_m2(double m, int r)
@@ -111,6 +79,30 @@ double		get_m2(double m, int r)
 	return (m2);
 }
 
+void		rec_circle2(int cx, int cy, int r, int thick, t_env *env)
+{
+	int		comp;
+	double	mx2;
+	double	my2;
+
+	comp = 0;
+	if (r > 4)//
+	{
+		if (thick < 1)
+			thick = 2;
+		draw_circle(cx, cy, r, thick, env);
+//		mx2 = env->mx;//permet d'avoir un double au denominateur
+		rec_circle2(cx + (r / 2), cy, r / 4, thick / 3, env);
+		rec_circle2(cx - (r / 2), cy, r / 4, thick / 3, env);
+		rec_circle2(cx, cy + (r / 2), r / 4, thick / 3, env);
+		rec_circle2(cx, cy - (r / 2), r / 4, thick / 3, env);
+		rec_circle2(cx + (COS45 * r), cy + (COS45 * r), r / 4, thick / 3, env);
+		rec_circle2(cx - (COS45 * r), cy + (COS45 * r), r / 4, thick / 3, env);
+		rec_circle2(cx + (COS45 * r), cy - (COS45 * r), r / 4, thick / 3, env);
+		rec_circle2(cx - (COS45 * r), cy - (COS45 * r), r / 4, thick / 3, env);
+
+	}
+}
 void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 {
 	int		comp;
@@ -118,14 +110,11 @@ void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 	double	my2;
 
 	comp = 0;
-	if (r > 1)
+	if (r > 2)
 	{
 		if (thick < 1)
 			thick = 2;
 		draw_circle(cx, cy, r, thick, env);
-		env->c1 += 90;
-		if (env->c1 > 200)
-			env->c1 -= 200;
 //		mx2 = env->mx;//permet d'avoir un double au denominateur
 		mx2 = get_m2(env->mx, r);
 		my2 = get_m2(env->my, r);
@@ -135,7 +124,17 @@ void		rec_circle(int cx, int cy, int r, int thick, t_env *env)
 			mx2 = -mx2;
 		if (env->my_sign == -1)
 			my2 = -my2;
-		rec_circle((cx + mx2), (cy + my2), r / 2, thick / 2, env);
+		rec_circle2((cx + mx2) + (r / 2), (cy + my2), r / 2, thick / 3, env);
+		rec_circle2((cx + mx2) - (r / 2), (cy + my2), r / 2, thick / 3, env);
+		rec_circle2((cx + mx2), (cy + my2) + (r / 2), r / 2, thick / 3, env);
+		rec_circle2((cx + mx2), (cy + my2) - (r / 2), r / 2, thick / 3, env);
+		env->c += 1;
+		rec_circle((cx + mx2), (cy + my2), r / 1.5, thick / 1.5, env);
+	}
+	if (r >= WIN_HEIGHT * 3)
+	{
+		env->cx2 = cx + mx2;
+		env->cy2 = cy + my2;
 	}
 }
 
@@ -184,13 +183,19 @@ void		vision(t_env *env)
 	int		cy;
 	int		thick;
 
-	r = (WIN_HEIGHT / 2);//passer a 2 ou moins
-	if ((env->slow / VISION_SLOW) + r >= r * 2)
-		env->slow = 0;
-	thick = 20;
-	env->slow += 3;
+	if (env->c >= 12288)
+		env->c = 0;
+	r = (WIN_HEIGHT + 100/* /2 */);//passer a 2 ou moins
+	if ((env->slow) + r >= r * 3)
+	{
+		env->slow = 1;
+		env->cx = env->cx2;
+		env->cy = env->cy2;
+	}
+	thick = 50;
+	env->slow = (1.01 * env->slow) + 6; //3;
 	get_m(env->cx, env->cy, env);
 	white_screen(env);
 //	get_c(cx, cy, r, thick, env);
-	rec_circle(env->cx, env->cy, r + (env->slow / VISION_SLOW), thick + (env->slow / (10 * VISION_SLOW)), env);
+	rec_circle(env->cx, env->cy, r + (env->slow), thick + (env->slow / 10), env);
 }

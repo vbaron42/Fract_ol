@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 16:58:13 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 07:48:10 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIN_LENGHT 900
 # define WIN_HEIGHT 800
 # define VISION_FOCUS 1.5
-# define VISION_SLOW 1.5
+# define COS45 0.707106
 
 typedef struct		s_cplx_nb
 {
@@ -68,16 +68,14 @@ typedef struct		s_env
 	t_fractal		*jul;
 	t_fractal		*man;
 	int				c;
+	int				pattern;
 	int				c1;
 	int				r;
-	int				v;
-	int				b;
-	int				r1;
-	int				v1;
-	int				b1;
 	int				cx;
 	int				cy;
-	int				slow;
+	int				cx2;
+	int				cy2;
+	double			slow;
 	int				mx;
 	int				mx_sign;
 	int				my;

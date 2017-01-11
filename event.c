@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 17:48:58 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 05:17:10 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int			event(int code, t_env *env)
 		env->man->pattern++;
 	if (code == 8 && env->fractal == 1)
 		env->jul->pattern++;
+	if (code == 8 && env->fractal == 2)
+		env->pattern++;
 	if (env->fractal == 0)
 		env->man->c += 12;
 	if (env->fractal == 1)

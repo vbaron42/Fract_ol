@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 19:55:51 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 07:48:06 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@ void	control_display()
 
 void	init_vision(t_env *env)
 {
+	env->pattern = 0;
 	env->c = 0;
-	env->c1 = 0;
-	env->r = 30;
-	env->v = 120;
-	env->b = 120;
-	env->slow = 0;
+	env->slow = 1;
 	env->mx = (WIN_LENGHT / 2);
 	env->my = (WIN_HEIGHT / 2);
 	env->cx = env->mx;
