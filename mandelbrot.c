@@ -6,13 +6,13 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 12:43:40 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 08:09:13 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			is_in_fractal(double x, double y, t_fractal man, t_env *env)
+void			is_in_mandelbrot(double x, double y, t_fractal man, t_env *env)
 {
 	int			i;
 	t_cplx_nb	c;
@@ -79,6 +79,6 @@ void			mandelbrot(t_env *env)
 	{
 		x = -1;
 		while (x++ < env->man->img_x)
-			is_in_fractal(x, y, *env->man, env);
+			is_in_mandelbrot(x, y, *env->man, env);
 	}
 }

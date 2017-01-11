@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 07:48:10 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 08:35:28 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_env
 	int				fractal;
 	t_fractal		*jul;
 	t_fractal		*man;
+	t_fractal		*sier;
 	int				c;
 	int				pattern;
 	int				c1;
@@ -85,6 +86,7 @@ typedef struct		s_env
 void				vision(t_env *env);
 void				mandelbrot(t_env *env);
 void				julia(t_env *env);
+void				sierpi(t_env *env);
 void				img_put_pixel(t_env *env, int x, int y, int c);
 int					mouse_move(int x, int y, t_env *env);
 int					mouse_clic(int button, int x, int y, t_env *env);

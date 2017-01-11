@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 19:01:53 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/08 19:36:19 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 08:58:37 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,36 @@ void		draw_img(t_env *env)
 		mandelbrot(env);
 	else if (env->fractal == 1)
 		julia(env);
+	else if (env->fractal == 2)
+		sierpi(env);
 	else
 		vision(env);
 }
 
 void		string_display(t_env *env)
 {
+	mlx_string_put(env->mlx, env->win, 48, 22, 0x0, "Fractal :");
 	mlx_string_put(env->mlx, env->win, 50, 20, 0xFF6FFF, "Fractal :");
 	if (env->fractal == 0)
-		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Mandelbrot");
+	{
+		mlx_string_put(env->mlx, env->win, 148, 22, 0x0, "Mandelbrot");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0x6FFFFF, "Mandelbrot");
+	}
 	else if (env->fractal == 1)
-		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Julia");
+	{
+		mlx_string_put(env->mlx, env->win, 148, 22, 0x0, "Julia");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0xFFFF6F, "Julia");
+	}
+	else if (env->fractal == 2)
+	{
+		mlx_string_put(env->mlx, env->win, 148, 22, 0x0, "Sierpinski");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0x6F6FFF, "Sierpinski");
+	}
 	else
-		mlx_string_put(env->mlx, env->win, 150, 20, 0xFF6FFF, "Autre");
+	{
+		mlx_string_put(env->mlx, env->win, 148, 22, 0x0, "Vision");
+		mlx_string_put(env->mlx, env->win, 150, 20, 0x4FFF4F, "Vision");
+	}
 }
 
 t_img		*new_img(t_env *env)

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 07:48:06 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 08:35:06 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ void	init_vision(t_env *env)
 	env->my = (WIN_HEIGHT / 2);
 	env->cx = env->mx;
 	env->cy = env->my;
+}
+
+void	init_sierpi(t_env *env)
+{
+	if (!(env->sier = (t_fractal*)malloc(sizeof(t_fractal))))
+		ft_error("Malloc error\n");
+	env->sier->c = 0;
+	env->sier->pattern = 1;
+	env->sier->zoom = 0;
+	env->sier->scale = (WIN_HEIGHT / 3);
+	env->sier->x1 = -1.5;
+	env->sier->x2 = 1.5;
+	env->sier->y1 = -1.5;
+	env->sier->y2 = 1.5;
+	env->sier->imax = 7;
+	env->sier->img_x = (env->sier->x2 - env->sier->x1) * env->sier->scale;
+	env->sier->img_y = (env->sier->y2 - env->sier->y1) * env->sier->scale;
 }
 
 void	init_julia(t_env *env)
@@ -90,8 +107,9 @@ int		main(int argc, char **argv)
 	if (argc != 2 || ((!(ft_strstr(argv[1], "Mandelbrot")))
 						&& ((!(ft_strstr(argv[1], "Man"))) || (i < 0))
 						&& ((!(ft_strstr(argv[1], "Julia"))) || (i++ < 0))
-						&& (!(ft_strstr(argv[1], "Vision")) || ((i += 2) < 0))))
-		ft_error("Usage : ./fractol [Mandelbrot, Man, Julia, Vision]\n");
+						&& ((!(ft_strstr(argv[1], "Sierpi"))) || ((i += 2) < 0))
+						&& ((!(ft_strstr(argv[1], "Vision"))) || ((i += 3) < 0))))
+		ft_error("Usage : ./fractol [Mandelbrot, Man, Julia, Sierpi, Vision]\n");
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		ft_error("Malloc error\n");
 	if (!(env->mlx = mlx_init()))
@@ -103,6 +121,7 @@ int		main(int argc, char **argv)
 	env->fractal = i;
 	init_man(env);
 	init_julia(env);
+	init_sierpi(env);
 	init_vision(env);
 	mlx_key_hook(env->win, event, env);
 	mlx_mouse_hook(env->win, mouse_clic, env);

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 05:17:10 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 08:59:07 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,16 @@ int			mouse_clic(int button, int x, int y, t_env *env)
 		env->jul->m_x = x;
 		env->jul->m_y = y;
 	}
+	else if (env->fractal == 2)
+	{
+		env->sier->zoom = 0;
+		if (button == 5)
+			env->sier->zoom = 1;
+		else if (button == 4)
+			env->sier->zoom = -1;
+		env->sier->m_x = x;
+		env->sier->m_y = y;
+	}
 	print_img(env);
 	return (1);
 }
@@ -69,11 +79,17 @@ int			event(int code, t_env *env)
 		env->jul->imax += 10;
 	if (code == 78 && env->fractal == 1)
 		env->jul->imax -= 10;
+	if (code == 69 && env->fractal == 2)
+		env->sier->imax += 1;
+	if (code == 78 && env->fractal == 2)
+		env->sier->imax -= 1;
 	if (code == 8 && env->fractal == 0)
 		env->man->pattern++;
 	if (code == 8 && env->fractal == 1)
 		env->jul->pattern++;
 	if (code == 8 && env->fractal == 2)
+		env->sier->pattern++;
+	if (code == 8 && env->fractal == 3)
 		env->pattern++;
 	if (env->fractal == 0)
 		env->man->c += 12;
@@ -82,9 +98,11 @@ int			event(int code, t_env *env)
 		env->jul->c += 12;
 		env->jul->freeze = 1;
 	}
+	if (env->fractal == 2)
+		env->sier->c += 12;
 	if (code == 49)
 		env->fractal++;
-	if (env->fractal == 3)
+	if (env->fractal == 4)
 		env->fractal = 0;
 	print_img(env);
 	return (0);
