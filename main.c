@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:32:16 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 08:35:06 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 12:51:31 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	init_sierpi(t_env *env)
 	env->sier->c = 0;
 	env->sier->pattern = 1;
 	env->sier->zoom = 0;
-	env->sier->scale = (WIN_HEIGHT / 3);
-	env->sier->x1 = -1.5;
-	env->sier->x2 = 1.5;
-	env->sier->y1 = -1.5;
-	env->sier->y2 = 1.5;
-	env->sier->imax = 7;
+	env->sier->scale = (WIN_HEIGHT / 4);
+	env->sier->x1 = (WIN_LENGHT / 2);
+	env->sier->x2 = env->sier->x1;
+	env->sier->y1 = (WIN_HEIGHT / 2);
+	env->sier->y2 = env->sier->y1;
+	env->sier->imax = 18;//valeur multiplier par 3 volontairement
 	env->sier->img_x = (env->sier->x2 - env->sier->x1) * env->sier->scale;
 	env->sier->img_y = (env->sier->y2 - env->sier->y1) * env->sier->scale;
 }
