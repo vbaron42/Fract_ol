@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 08:35:28 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 09:12:25 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void				vision(t_env *env);
 void				mandelbrot(t_env *env);
 void				julia(t_env *env);
 void				sierpi(t_env *env);
+void				zoom_in_out(t_fractal *fra, double hx, double hy, int imax);
 void				img_put_pixel(t_env *env, int x, int y, int c);
 int					mouse_move(int x, int y, t_env *env);
 int					mouse_clic(int button, int x, int y, t_env *env);

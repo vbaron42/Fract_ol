@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:21:51 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 08:09:13 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/11 09:26:54 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ void			is_in_mandelbrot(double x, double y, t_fractal man, t_env *env)
 						* 15) + 100, env->man->pattern));
 }
 
-void			zoom_in_out(t_env *env, double hx, double hy)
-{
-	if (env->man->zoom != 0)
-	{
-		env->man->img_x /= env->man->scale;
-		env->man->img_y /= env->man->scale;
-		if (env->man->zoom == 1)
-		{
-			hx = env->man->img_x / 4;
-			hy = env->man->img_y / 4;
-			env->man->scale *= 2;
-			env->man->imax += 4;
-		}
-		else
-		{
-			hx = env->man->img_x;
-			hy = env->man->img_y;
-			env->man->scale /= 2;
-			env->man->imax -= 4;
-		}
-		env->man->x1 += ((env->man->m_x / WIN_LENGHT) * env->man->img_x) - hx;
-		env->man->x2 = env->man->x1 + (hx * 2);
-		env->man->y1 += ((env->man->m_y / WIN_HEIGHT) * env->man->img_y) - hy;
-		env->man->y2 = env->man->y1 + (hy * 2);
-		env->man->img_x = (env->man->x2 - env->man->x1) * env->man->scale;
-		env->man->img_y = (env->man->y2 - env->man->y1) * env->man->scale;
-	}
-}
-
 void			mandelbrot(t_env *env)
 {
 	double		hx;
@@ -73,7 +44,7 @@ void			mandelbrot(t_env *env)
 	double		x;
 	double		y;
 
-	zoom_in_out(env, hx, hy);
+	zoom_in_out(env->man, hx, hy, 4);
 	y = -1;
 	while (y++ < env->man->img_y)
 	{
