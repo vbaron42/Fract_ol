@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/11 08:59:07 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/14 19:23:02 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int			event(int code, t_env *env)
 	}
 	env->man->zoom = 0;
 	env->jul->zoom = 0;
+	env->sier->zoom = 0;
 	if (code == 69 && env->fractal == 0)
 		env->man->imax += 5;
 	if (code == 78 && env->fractal == 0)
@@ -80,9 +81,9 @@ int			event(int code, t_env *env)
 	if (code == 78 && env->fractal == 1)
 		env->jul->imax -= 10;
 	if (code == 69 && env->fractal == 2)
-		env->sier->imax += 1;
-	if (code == 78 && env->fractal == 2)
-		env->sier->imax -= 1;
+		env->sier->imax *= 3;
+	if (code == 78 && env->sier->imax >= 3 && env->fractal == 2)
+		env->sier->imax /= 3;
 	if (code == 8 && env->fractal == 0)
 		env->man->pattern++;
 	if (code == 8 && env->fractal == 1)
@@ -99,7 +100,7 @@ int			event(int code, t_env *env)
 		env->jul->freeze = 1;
 	}
 	if (env->fractal == 2)
-		env->sier->c += 12;
+		env->sier->c += 20;
 	if (code == 49)
 		env->fractal++;
 	if (env->fractal == 4)
