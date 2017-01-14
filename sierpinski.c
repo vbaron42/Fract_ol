@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 08:05:56 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/14 22:13:05 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/14 22:31:58 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void			is_out_sierpi(double cx, double cy, double l, t_env *env)
 {
 	if (is_in_win(cx, cy, l, env) == 1 && l * 3 * env->sier->imax >= ((double)1 / 3))
 	{
+//		if ()
 		draw_square(cx * env->sier->scale, cy * env->sier->scale,
 				l * env->sier->scale, env);//ajout de + sier->x1 a garder ?
+//		if (cx - l)
 		is_out_sierpi(cx - l, cy + l, l / 3, env);
 		is_out_sierpi(cx, cy + l, l / 3, env);
 		is_out_sierpi(cx + l, cy + l, l / 3, env);
@@ -144,16 +146,16 @@ void			zoom_in_out2(t_fractal *fra, double hx, double hy, int imax)
 		fra->img_y /= fra->scale;
 		if (fra->zoom == 1)
 		{
-			hx = fra->img_x / 2.8844994;
-			hy = fra->img_y / 2.8844994;
-			fra->scale *= 1.4422497;
+			hx = fra->img_x / 2.88449914061;
+			hy = fra->img_y / 2.88449914061;
+			fra->scale *= 1.44224957031;
 			fra->imax += imax;
 		}
 		else
 		{
-			hx = fra->img_x * 0.7;
-			hy = fra->img_y * 0.7;
-			fra->scale /= 1.4422497;
+			hx = fra->img_x * 0.69336127435;
+			hy = fra->img_y * 0.69336127435;
+			fra->scale /= 1.44224957031;
 			fra->imax -= imax;
 		}
 		fra->x1 += ((fra->m_x / WIN_LENGHT) * fra->img_x) - hx;
