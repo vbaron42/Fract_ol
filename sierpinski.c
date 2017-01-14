@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 08:05:56 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/14 19:49:51 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/14 22:13:05 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void			is_out_sierpi(double cx, double cy, double l, t_env *env)
 {
 	if (is_in_win(cx, cy, l, env) == 1 && l * 3 * env->sier->imax >= ((double)1 / 3))
 	{
-	draw_square(cx * env->sier->scale, cy * env->sier->scale,
-			l * env->sier->scale, env);//ajout de + sier->x1 a garder ?
-	is_out_sierpi(cx - l, cy + l, l / 3, env);
-	is_out_sierpi(cx, cy + l, l / 3, env);
-	is_out_sierpi(cx + l, cy + l, l / 3, env);
-	is_out_sierpi(cx - l, cy, l / 3, env);
-	is_out_sierpi(cx + l, cy, l / 3, env);
-	is_out_sierpi(cx - l, cy - l, l / 3, env);
-	is_out_sierpi(cx, cy - l, l / 3, env);
-	is_out_sierpi(cx + l, cy - l, l / 3, env);
+		draw_square(cx * env->sier->scale, cy * env->sier->scale,
+				l * env->sier->scale, env);//ajout de + sier->x1 a garder ?
+		is_out_sierpi(cx - l, cy + l, l / 3, env);
+		is_out_sierpi(cx, cy + l, l / 3, env);
+		is_out_sierpi(cx + l, cy + l, l / 3, env);
+		is_out_sierpi(cx - l, cy, l / 3, env);
+		is_out_sierpi(cx + l, cy, l / 3, env);
+		is_out_sierpi(cx - l, cy - l, l / 3, env);
+		is_out_sierpi(cx, cy - l, l / 3, env);
+		is_out_sierpi(cx + l, cy - l, l / 3, env);
 	}
 }
 
@@ -136,6 +136,35 @@ void			color_sierpi(t_env *env)
 		fra->img_y = (fra->y2 - fra->y1) * fra->scale;
 }*/
 
+void			zoom_in_out2(t_fractal *fra, double hx, double hy, int imax)
+{
+	if (fra->zoom != 0)
+	{
+		fra->img_x /= fra->scale;
+		fra->img_y /= fra->scale;
+		if (fra->zoom == 1)
+		{
+			hx = fra->img_x / 2.8844994;
+			hy = fra->img_y / 2.8844994;
+			fra->scale *= 1.4422497;
+			fra->imax += imax;
+		}
+		else
+		{
+			hx = fra->img_x * 0.7;
+			hy = fra->img_y * 0.7;
+			fra->scale /= 1.4422497;
+			fra->imax -= imax;
+		}
+		fra->x1 += ((fra->m_x / WIN_LENGHT) * fra->img_x) - hx;
+		fra->x2 = fra->x1 + (hx * 2);
+		fra->y1 += ((fra->m_y / WIN_HEIGHT) * fra->img_y) - hy;
+		fra->y2 = fra->y1 + (hy * 2);
+		fra->img_x = (fra->x2 - fra->x1) * fra->scale;
+		fra->img_y = (fra->y2 - fra->y1) * fra->scale;
+	}
+}
+
 void			sierpi(t_env *env)
 {
 	double		hx;
@@ -143,7 +172,7 @@ void			sierpi(t_env *env)
 	double		x;
 	double		y;
 
-	zoom_in_out/*_sierpi*/(env->sier, hx, hy, 6);
+	zoom_in_out2/*_sierpi*/(env->sier, hx, hy, 6);
 	white_screen(env);//
 	y = - env->sier->y1 * env->sier->scale;//-1;
 	while (y++ < (- env->sier->y1 + 1) * env->sier->scale)//env->sier->img_y)//a modifier, ne pas parcourir les 
