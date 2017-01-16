@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/14 19:23:02 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/16 21:03:23 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int			event(int code, t_env *env)
 {
 	if (code == 53)
 	{
-		mlx_destroy_window(env->mlx, env->win);
+		mlx_destroy_window(env->mlx, env->win);//free env man jul ...
 		exit(0);
 	}
 	env->man->zoom = 0;

@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 01:54:19 by vbaron            #+#    #+#             */
-/*   Updated: 2016/12/19 01:25:08 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/16 18:53:58 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void				ft_memdel (void **ap);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
 int					ft_abs(int n);
+double				ft_abs_d(double n);
 int					ft_pow(int x, int p);
 void				ft_putchar(char c);
 void				ft_putchar_fd(char c, int fd);

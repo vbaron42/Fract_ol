@@ -6,30 +6,11 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 08:05:56 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/14 22:31:58 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/16 22:58:57 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void			draw_square(int cx, int cy, int size, t_env *env)
-{
-	int			x;
-	int			y;
-	int			x_end;
-	int			y_end;
-
-	size /= 2;
-	y = cy - size - 1;// pre-diviser par 2 pour economiser des calcules
-	x_end = cx + size;
-	y_end = cy + size;
-	while (y++ <= y_end)
-	{
-		x = cx - size - 1;
-		while (x++ <= x_end)
-			img_put_pixel(env, x, y, 0x0);
-	}
-}
 
 int				is_in_win(double cx, double cy, double l, t_env *env)
 {
@@ -54,17 +35,27 @@ int				is_in_win(double cx, double cy, double l, t_env *env)
 			|| (y2 >= env->sier->y1 && y2 <= env->sier->y2)))
 		return (1);// = au moins 1 coin de la zone dans l'ecran
 	else
-		return (1);//remettre a 0 plus tard
+	{
+		ft_putstr("s");
+		return (0);//remettre a 0 plus tard
+	}
 }
 
 void			is_out_sierpi(double cx, double cy, double l, t_env *env)
 {
-	if (is_in_win(cx, cy, l, env) == 1 && l * 3 * env->sier->imax >= ((double)1 / 3))
+	double		dx;
+	double		dy;
+
+	if (/*is_in_win(cx, cy, l, env) == 1 && */l * 3 * env->sier->imax >= ((double)1 / 3))
 	{
-//		if ()
-		draw_square(cx * env->sier->scale, cy * env->sier->scale,
-				l * env->sier->scale, env);//ajout de + sier->x1 a garder ?
-//		if (cx - l)
+		dx = env->sier->img_x / (2 * env->sier->scale);
+		dy = env->sier->img_y / (2 * env->sier->scale);
+		if (ft_abs_d(cx - env->sier->c_r) - (l * 3) <= dx && ft_abs_d(cy - env->sier->c_i) - (l * 3) <= dy)//!! On deplace la figure ? cx = 0.5 - x1
+		{
+			draw_square(cx * env->sier->scale, cy * env->sier->scale,
+					l * env->sier->scale, env);//ajout de + sier->x1 a garder ?
+		}
+//		if (ft_abs_d(cx - env->sier->c_r))
 		is_out_sierpi(cx - l, cy + l, l / 3, env);
 		is_out_sierpi(cx, cy + l, l / 3, env);
 		is_out_sierpi(cx + l, cy + l, l / 3, env);
@@ -76,22 +67,6 @@ void			is_out_sierpi(double cx, double cy, double l, t_env *env)
 	}
 }
 
-/*
-void			color_sierpi(t_env *env)
-{
-	int			x;
-	int			y;
-
-	//...
-	// = 0
-	while ()
-	{
-		// = 0;
-		while()
-			img_put_pixel(env, x, y, color_scale(x + y / 10 ??));
-	}
-}
-*/
 /*void			zoom_in_out_sierpi(t_fractal *sier, int hx, int hy);
 {
 	if (sier->zoom != 0)
@@ -174,7 +149,9 @@ void			sierpi(t_env *env)
 	double		x;
 	double		y;
 
-	zoom_in_out2/*_sierpi*/(env->sier, hx, hy, 6);
+	zoom_in_out/*2*/(env->sier, hx, hy, 6);
+	env->sier->c_r = (env->sier->x1 + env->sier->x2) / 2;
+	env->sier->c_i = (env->sier->y1 + env->sier->y2) / 2;
 	white_screen(env);//
 	y = - env->sier->y1 * env->sier->scale;//-1;
 	while (y++ < (- env->sier->y1 + 1) * env->sier->scale)//env->sier->img_y)//a modifier, ne pas parcourir les 

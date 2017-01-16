@@ -6,11 +6,30 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 09:11:18 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/14 20:44:00 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/16 22:59:02 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void			draw_square(int cx, int cy, int size, t_env *env)
+{
+	int			x;
+	int			y;
+	int			x_end;
+	int			y_end;
+
+	size /= 2;
+	y = cy - size - 1;
+	x_end = cx + size;
+	y_end = cy + size;
+	while (y++ <= y_end)
+	{
+		x = cx - size - 1;
+		while (x++ <= x_end)
+			img_put_pixel(env, x, y, 0x0);
+	}
+}
 
 void			zoom_in_out(t_fractal *fra, double hx, double hy, int imax)
 {
