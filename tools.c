@@ -6,32 +6,27 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 09:11:18 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/16 22:59:02 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/22 05:19:40 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			draw_square(int cx, int cy, int size, t_env *env)
+void		white_screen(t_env *env)
 {
-	int			x;
-	int			y;
-	int			x_end;
-	int			y_end;
+	int		l;
+	int		h;
 
-	size /= 2;
-	y = cy - size - 1;
-	x_end = cx + size;
-	y_end = cy + size;
-	while (y++ <= y_end)
+	h = WIN_HEIGHT;
+	while (h-- >= 0)
 	{
-		x = cx - size - 1;
-		while (x++ <= x_end)
-			img_put_pixel(env, x, y, 0x0);
+		l = WIN_LENGHT;
+		while (l-- >= 0)
+			img_put_pixel(env, l, h, 0xFFFFFF);
 	}
 }
 
-void			zoom_in_out(t_fractal *fra, double hx, double hy, int imax)
+void		zoom_in_out(t_fractal *fra, double hx, double hy, int imax)
 {
 	if (fra->zoom != 0)
 	{
@@ -58,4 +53,15 @@ void			zoom_in_out(t_fractal *fra, double hx, double hy, int imax)
 		fra->img_x = (fra->x2 - fra->x1) * fra->scale;
 		fra->img_y = (fra->y2 - fra->y1) * fra->scale;
 	}
+}
+
+void		zoom_event(int button, int x, int y, t_fractal *fra)
+{
+	fra->zoom = 0;
+	if (button == 5)
+		fra->zoom = 1;
+	else if (button == 4)
+		fra->zoom = -1;
+	fra->m_x = x;
+	fra->m_y = y;
 }
