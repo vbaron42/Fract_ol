@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 09:11:18 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/22 05:19:40 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/22 06:34:27 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,49 @@ void		zoom_event(int button, int x, int y, t_fractal *fra)
 		fra->zoom = -1;
 	fra->m_x = x;
 	fra->m_y = y;
+}
+
+void		move_fractal(int code, t_fractal *fra)
+{
+	if (code == 123 || code == 0)
+	{
+		fra->x1 -= 20 / fra->scale;
+		fra->x2 -= 20 / fra->scale;
+	}
+	else if (code == 124 || code == 2)
+	{
+		fra->x1 += 20 / fra->scale;
+		fra->x2 += 20 / fra->scale;
+	}
+	else if (code == 125 || code == 1)
+	{
+		fra->y1 += 20 / fra->scale;
+		fra->y2 += 20 / fra->scale;
+	}
+	else if (code == 126 || code == 13)
+	{
+		fra->y1 -= 20 / fra->scale;
+		fra->y2 -= 20 / fra->scale;
+	}
+}
+
+void		move_event(int code, int fractal, t_env *env)
+{
+	if (fractal == 0)
+		move_fractal(code, env->man);
+	else if (fractal == 1)
+		move_fractal(code, env->jul);
+	else if (fractal == 2)
+		move_fractal(code, env->sier);
+	else
+	{
+		if (code == 123 || code == 0)
+			env->vision->cx += 20;
+		else if (code == 124 || code == 2)
+			env->vision->cx -= 20;
+		else if (code == 125 || code == 1)
+			env->vision->cy -= 20;
+		else if (code == 126 || code == 13)
+			env->vision->cy += 20;
+	}
 }

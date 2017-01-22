@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:46 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/22 02:42:40 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/22 06:36:49 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int			event(int code, t_env *env)
 	env->man->zoom = 0;
 	env->jul->zoom = 0;
 	env->sier->zoom = 0;
+	move_event(code, env->fractal, env);
 	color_event(code, env);
 	imax_event(code, env);
 	if (code == 49)

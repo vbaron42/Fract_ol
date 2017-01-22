@@ -6,7 +6,7 @@
 #    By: vbaron <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 16:31:35 by vbaron            #+#    #+#              #
-#    Updated: 2017/01/22 05:25:34 by vbaron           ###   ########.fr        #
+#    Updated: 2017/01/22 06:50:23 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ $(NAME):
 	@$(CC) $(FLAGS) $(SRC) -L ./libft -lft -o $(NAME)
 	@cd libft/ && $(MAKE) fclean
 	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Create Fractol"
+
 %.o: %.c
 	@$(cc) $(FLAGS) -c $^ -o $@
 

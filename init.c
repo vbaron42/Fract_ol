@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 02:06:05 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/22 02:44:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/22 06:00:00 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	control_display(void)
 	ft_putstr("    </>   Control :                             </>\n");
 	ft_putstr("    </>                                         </>\n");
 	ft_putstr("    </>  - Press SPACE to swap fractal.         </>\n");
+	ft_putstr("    </>  - Use Arrows or AWSD to move.          </>\n");
 	ft_putstr("    </>  - Press + or - to change accuracy.     </>\n");
 	ft_putstr("    </>  - Press any key to change color.       </>\n");
 	ft_putstr("    </>  - Press C to swap pattern.             </>\n");

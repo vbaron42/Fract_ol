@@ -6,7 +6,7 @@
 /*   By: vbaron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:31:57 by vbaron            #+#    #+#             */
-/*   Updated: 2017/01/22 05:25:55 by vbaron           ###   ########.fr       */
+/*   Updated: 2017/01/22 06:35:26 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void				draw_square(int cx, int cy, int size, t_env *env);
 void				draw_circle(int cx, int cy, t_circle cir, t_env *env);
 void				zoom_in_out(t_fractal *fra, double hx, double hy, int imax);
 void				zoom_event(int button, int x, int y, t_fractal *fra);
+void				move_event(int code, int fractal, t_env *env);
 void				img_put_pixel(t_env *env, int x, int y, int c);
 int					mouse_move(int x, int y, t_env *env);
 int					mouse_clic(int button, int x, int y, t_env *env);
